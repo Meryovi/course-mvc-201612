@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Colegio.Models.Estudiante>
+
+@{
+    ViewBag.Title = "Listado de Estudiantes";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <a href="~/estudiantes/registrar" class="btn btn-primary">Registrar Estudiante</a>
+</div>
+
+<table class="table table-striped">
+    <tr>
+        <th>@Html.DisplayNameFor(m => m.Matricula)</th>
+        <th>@Html.DisplayNameFor(m => m.Nombres)</th>
+        <th>@Html.DisplayNameFor(m => m.Apellidos)</th>
+        <th>@Html.DisplayNameFor(m => m.FechaMatriculacion)</th>
+        <th></th>
+    </tr>
+    @foreach(var estudiante in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(m => estudiante.Matricula)</td>
+            <td>@Html.DisplayFor(m => estudiante.Nombres)</td>
+            <td>@Html.DisplayFor(m => estudiante.Apellidos)</td>
+            <td>@Html.DisplayFor(m => estudiante.FechaMatriculacion)</td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = estudiante.Id })
+                /
+                @Html.ActionLink("Eliminar", "Eliminar", new { id = estudiante.Id })
+            </td>
+        </tr>
+    }
+</table>
