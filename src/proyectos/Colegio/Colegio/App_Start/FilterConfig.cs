@@ -1,4 +1,6 @@
-﻿using System.Web;
+﻿using Colegio.ActionFilters;
+using Colegio.Models;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Colegio
@@ -8,6 +10,7 @@ namespace Colegio
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new ValidarAccesoFilter(UsuarioNivel.Usuario));
         }
     }
 }

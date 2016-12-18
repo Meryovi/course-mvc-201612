@@ -13,6 +13,7 @@ namespace Colegio.Models
     {
         public int Id { get; set; }
 
+        [Display(Name = "Usuario")]
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [StringLength(50, ErrorMessage = "La longitud máxima del campo {0} es {1}")]
         public string NombreUsuario { get; set; }

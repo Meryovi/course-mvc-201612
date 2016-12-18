@@ -18,7 +18,10 @@ namespace Colegio.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            dbContext.Dispose();
+            if (disposing)
+            {
+                dbContext.Dispose();
+            }
             base.Dispose(disposing);
         }
     }

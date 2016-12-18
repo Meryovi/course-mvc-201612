@@ -1,4 +1,5 @@
-﻿using Colegio.Models;
+﻿using Colegio.ActionFilters;
+using Colegio.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Colegio.Controllers
 {
+    [ValidarAccesoFilter(UsuarioNivel.Administrador)]
     public class EstudiantesController : BaseController
     {
         // Esto se realiza de forma automatica si no definimos un constructor.
@@ -17,6 +19,7 @@ namespace Colegio.Controllers
 
         }
 
+        [ValidarAccesoFilter(UsuarioNivel.Usuario)]
         public ActionResult Index()
         {
             var estudiantes = dbContext.Estudiantes;

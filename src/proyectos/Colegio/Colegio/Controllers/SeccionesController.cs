@@ -10,105 +10,114 @@ using Colegio.Models;
 
 namespace Colegio.Controllers
 {
-    public class ProfesoresController : BaseController
+    public class SeccionesController : BaseController
     {
-        // GET: Profesores
+        // GET: Secciones
         public ActionResult Index()
         {
-            return View(dbContext.Profesores.ToList());
+            var secciones = dbContext.Secciones.Include(s => s.Materia).Include(s => s.Profesor);
+            return View(secciones.ToList());
         }
 
-        // GET: Profesores/Details/5
+        // GET: Secciones/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profesor profesor = dbContext.Profesores.Find(id);
-            if (profesor == null)
+            Seccion seccion = dbContext.Secciones.Find(id);
+            if (seccion == null)
             {
                 return HttpNotFound();
             }
-            return View(profesor);
+            return View(seccion);
         }
 
-        // GET: Profesores/Create
+        // GET: Secciones/Create
         public ActionResult Create()
         {
+            ViewBag.MateriaId = new SelectList(dbContext.Materias, "Id", "Nombre");
+            ViewBag.ProfesorId = new SelectList(dbContext.Profesores, "Id", "Observaciones");
             return View();
         }
 
-        // POST: Profesores/Create
+        // POST: Secciones/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Profesor profesor)
+        public ActionResult Create(Seccion seccion)
         {
             if (ModelState.IsValid)
             {
-                dbContext.Profesores.Add(profesor);
+                dbContext.Secciones.Add(seccion);
                 dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(profesor);
+            ViewBag.MateriaId = new SelectList(dbContext.Materias, "Id", "Nombre", seccion.MateriaId);
+            ViewBag.ProfesorId = new SelectList(dbContext.Profesores, "Id", "Observaciones", seccion.ProfesorId);
+            return View(seccion);
         }
 
-        // GET: Profesores/Edit/5
+        // GET: Secciones/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profesor profesor = dbContext.Profesores.Find(id);
-            if (profesor == null)
+            Seccion seccion = dbContext.Secciones.Find(id);
+            if (seccion == null)
             {
                 return HttpNotFound();
             }
-            return View(profesor);
+            ViewBag.MateriaId = new SelectList(dbContext.Materias, "Id", "Nombre", seccion.MateriaId);
+            ViewBag.ProfesorId = new SelectList(dbContext.Profesores, "Id", "Observaciones", seccion.ProfesorId);
+            return View(seccion);
         }
 
-        // POST: Profesores/Edit/5
+        // POST: Secciones/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Profesor profesor)
+        public ActionResult Edit(Seccion seccion)
         {
             if (ModelState.IsValid)
             {
-                dbContext.Entry(profesor).State = EntityState.Modified;
+                dbContext.Entry(seccion).State = EntityState.Modified;
                 dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(profesor);
+            ViewBag.MateriaId = new SelectList(dbContext.Materias, "Id", "Nombre", seccion.MateriaId);
+            ViewBag.ProfesorId = new SelectList(dbContext.Profesores, "Id", "Observaciones", seccion.ProfesorId);
+            return View(seccion);
         }
 
-        // GET: Profesores/Delete/5
+        // GET: Secciones/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profesor profesor = dbContext.Profesores.Find(id);
-            if (profesor == null)
+            Seccion seccion = dbContext.Secciones.Find(id);
+            if (seccion == null)
             {
                 return HttpNotFound();
             }
-            return View(profesor);
+            return View(seccion);
         }
 
-        // POST: Profesores/Delete/5
+        // POST: Secciones/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Profesor profesor = dbContext.Profesores.Find(id);
-            dbContext.Profesores.Remove(profesor);
+            Seccion seccion = dbContext.Secciones.Find(id);
+            dbContext.Secciones.Remove(seccion);
             dbContext.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -10,105 +10,106 @@ using Colegio.Models;
 
 namespace Colegio.Controllers
 {
-    public class ProfesoresController : BaseController
+    public class UsuariosController : BaseController
     {
-        // GET: Profesores
+        // GET: Usuarios
         public ActionResult Index()
         {
-            return View(dbContext.Profesores.ToList());
+            return View(dbContext.Usuarios.ToList());
         }
 
-        // GET: Profesores/Details/5
+        // GET: Usuarios/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profesor profesor = dbContext.Profesores.Find(id);
-            if (profesor == null)
+            Usuario usuario = dbContext.Usuarios.Find(id);
+            if (usuario == null)
             {
                 return HttpNotFound();
             }
-            return View(profesor);
+            return View(usuario);
         }
 
-        // GET: Profesores/Create
+        // GET: Usuarios/Create
         public ActionResult Create()
         {
-            return View();
+            var usuario = new Usuario();
+            return View(usuario);
         }
 
-        // POST: Profesores/Create
+        // POST: Usuarios/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Profesor profesor)
+        public ActionResult Create(Usuario usuario)
         {
             if (ModelState.IsValid)
             {
-                dbContext.Profesores.Add(profesor);
+                dbContext.Usuarios.Add(usuario);
                 dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(profesor);
+            return View(usuario);
         }
 
-        // GET: Profesores/Edit/5
+        // GET: Usuarios/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profesor profesor = dbContext.Profesores.Find(id);
-            if (profesor == null)
+            Usuario usuario = dbContext.Usuarios.Find(id);
+            if (usuario == null)
             {
                 return HttpNotFound();
             }
-            return View(profesor);
+            return View(usuario);
         }
 
-        // POST: Profesores/Edit/5
+        // POST: Usuarios/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Profesor profesor)
+        public ActionResult Edit(Usuario usuario)
         {
             if (ModelState.IsValid)
             {
-                dbContext.Entry(profesor).State = EntityState.Modified;
+                dbContext.Entry(usuario).State = EntityState.Modified;
                 dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(profesor);
+            return View(usuario);
         }
 
-        // GET: Profesores/Delete/5
+        // GET: Usuarios/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profesor profesor = dbContext.Profesores.Find(id);
-            if (profesor == null)
+            Usuario usuario = dbContext.Usuarios.Find(id);
+            if (usuario == null)
             {
                 return HttpNotFound();
             }
-            return View(profesor);
+            return View(usuario);
         }
 
-        // POST: Profesores/Delete/5
+        // POST: Usuarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Profesor profesor = dbContext.Profesores.Find(id);
-            dbContext.Profesores.Remove(profesor);
+            Usuario usuario = dbContext.Usuarios.Find(id);
+            dbContext.Usuarios.Remove(usuario);
             dbContext.SaveChanges();
             return RedirectToAction("Index");
         }
