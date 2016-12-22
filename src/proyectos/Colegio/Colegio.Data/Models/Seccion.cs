@@ -13,8 +13,10 @@ namespace Colegio.Models
     {
         public int Id { get; set; }
 
+        [Display(Name = "Profesor")]
         public int ProfesorId { get; set; }
 
+        [Display(Name = "Materia")]
         public int MateriaId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
@@ -25,6 +27,7 @@ namespace Colegio.Models
         [StringLength(120, ErrorMessage = "La longitud máxima del campo {0} es {1}")]
         public string Ubicacion { get; set; }
 
+        [Display(Name = "Max. de Estudiantes")]
         public int? MaximoEstudiantes { get; set; }
 
         [StringLength(500, ErrorMessage = "La longitud máxima del campo {0} es {1}")]
@@ -32,6 +35,8 @@ namespace Colegio.Models
 
         public bool Activa { get; set; }
 
+        [Display(Name = "Fecha de Registro")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime FechaRegistro { get; set; }
 
         [ForeignKey("ProfesorId")]

@@ -6,8 +6,22 @@
 
 <h2>@ViewBag.Title</h2>
 
-<div>
-    <a href="~/estudiantes/registrar" class="btn btn-primary">Registrar Estudiante</a>
+<div class="row">
+    <div class="col-md-8">
+        <p>
+            <a href="~/estudiantes/registrar" class="btn btn-primary">Registrar Estudiante</a>
+        </p>
+    </div>
+    <div class="col-md-4">
+        <form class="form-inline" action="~/" method="get">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" />
+                    <button class="btn input-group-addon">Buscar...</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 
 <table class="table table-striped">
@@ -25,9 +39,11 @@
             <td>@Html.DisplayFor(m => estudiante.Nombres)</td>
             <td>@Html.DisplayFor(m => estudiante.Apellidos)</td>
             <td>@Html.DisplayFor(m => estudiante.FechaMatriculacion)</td>
-            <td>
+            <td>                
+                @Html.ActionLink("Inscripcion", "Inscripcion", new { id = estudiante.Id })
+                |
                 @Html.ActionLink("Editar", "Editar", new { id = estudiante.Id })
-                /
+                |
                 @Html.ActionLink("Eliminar", "Eliminar", new { id = estudiante.Id })
             </td>
         </tr>

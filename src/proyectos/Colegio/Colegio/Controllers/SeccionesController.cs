@@ -38,7 +38,7 @@ namespace Colegio.Controllers
         public ActionResult Create()
         {
             ViewBag.MateriaId = new SelectList(dbContext.Materias, "Id", "Nombre");
-            ViewBag.ProfesorId = new SelectList(dbContext.Profesores, "Id", "Observaciones");
+            ViewBag.ProfesorId = new SelectList(dbContext.Profesores, "Id", "Nombres");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace Colegio.Controllers
             }
 
             ViewBag.MateriaId = new SelectList(dbContext.Materias, "Id", "Nombre", seccion.MateriaId);
-            ViewBag.ProfesorId = new SelectList(dbContext.Profesores, "Id", "Observaciones", seccion.ProfesorId);
+            ViewBag.ProfesorId = new SelectList(dbContext.Profesores, "Id", "Nombres", seccion.ProfesorId);
             return View(seccion);
         }
 
@@ -74,7 +74,7 @@ namespace Colegio.Controllers
                 return HttpNotFound();
             }
             ViewBag.MateriaId = new SelectList(dbContext.Materias, "Id", "Nombre", seccion.MateriaId);
-            ViewBag.ProfesorId = new SelectList(dbContext.Profesores, "Id", "Observaciones", seccion.ProfesorId);
+            ViewBag.ProfesorId = new SelectList(dbContext.Profesores, "Id", "Nombres", seccion.ProfesorId);
             return View(seccion);
         }
 
@@ -92,7 +92,7 @@ namespace Colegio.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.MateriaId = new SelectList(dbContext.Materias, "Id", "Nombre", seccion.MateriaId);
-            ViewBag.ProfesorId = new SelectList(dbContext.Profesores, "Id", "Observaciones", seccion.ProfesorId);
+            ViewBag.ProfesorId = new SelectList(dbContext.Profesores, "Id", "Nombres", seccion.ProfesorId);
             return View(seccion);
         }
 

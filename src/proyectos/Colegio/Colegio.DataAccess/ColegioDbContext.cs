@@ -21,6 +21,9 @@ namespace Colegio.Models
         public DbSet<Usuario> Usuarios { get; set; }
 
         public ColegioDbContext()
-            : base("ColegioDb") { } // Nombre de la conexion de la base de datos.
+            : base("ColegioDb")
+        {
+            this.Configuration.LazyLoadingEnabled = false;
+        } // Nombre de la conexion de la base de datos.
     }
 }
